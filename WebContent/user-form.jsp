@@ -8,7 +8,23 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	<link rel="stylesheet" href="./styles/user-form.css">
+	<style>
+	.card{
+	    box-shadow: 0 3px 10px lightgrey;
+	    border-radius: 10px;
+	    border: none;
+	}
+	
+	.form-control{
+	    border-radius: 10px;
+	    padding: 20px;
+	}
+	
+	input[type="submit"]{
+	    box-shadow: 0 6px 4px grey;
+	    min-width: 25%;
+	}
+	</style>
 </head>
 <body>
 
@@ -77,6 +93,73 @@
 			</div>
 		</div>
 	</div>
-	<script src="./js/user-form.js"></script>
+	<script>
+	/* FORM VALIDATION CODE */
+	var nameField = document.getElementById('name');
+	var nameError = document.getElementById('name-error');
+
+	var emailField = document.getElementById('email');
+	var emailError = document.getElementById('email-error');
+
+	var countryField = document.getElementById('country');
+	var countryError = document.getElementById('country-error');
+
+	/* EVENT HANDLERS */
+	nameField.addEventListener('input',(e)=>{
+	   const isValid = validateName(e.target.value);
+	   nameError.style.color = isValid === "Looks good!" ? "green" : "red";
+	   nameError.innerHTML = isValid;
+	});
+
+	emailField.addEventListener('input',(e)=>{
+	    const isValid = validateEmail(e.target.value);
+	    emailError.style.color = isValid === "Email is valid" ? "green" : "red";
+	    emailError.innerHTML = isValid;
+	});
+
+	countryField.addEventListener('input',(e)=>{
+	    const isValid = validateCountry(e.target.value);
+	    countryError.style.color = isValid === "Passed Validation Check" ? "green" : "red";
+	    countryError.innerHTML = isValid;
+	});
+
+	/* VALIDATION FUNCTIONS */
+	function validateName(name)
+	{
+	    if ((/[^a-zA-Z]/).test(name))
+	    {
+	        return "Invalid name";
+	    }
+	    return name.length===0 ? "Name can't be empty" : name.length < 3 ? "Name too short" : "Looks good!";
+	}
+
+	function validateEmail(email)
+	{
+	    if (email === "")
+	    {
+	        return "Email can't be empty";
+	    }
+	    return (/^[a-zA-Z0-9][\w.]+@[a-z]+[.]{1}(com)$/).test(email) ? "Email is valid" : "Please enter a valid email";
+	}
+
+	function validateCountry(country)
+	{
+	    if ((/[^a-zA-Z]/).test(country))
+	    {
+	        return "Please enter a valid country name";
+	    }
+	    return country.length===0 ? "Country name can't be empty" : country.length < 3 ? "Please enter a valid country name" : "Passed Validation Check";
+	}
+
+	/* FORM CONFIRMATION */
+	function confirmSubmit()
+	{
+	    if (confirm("Are You Sure ? ")) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+	</script>
 </body>
 </html>

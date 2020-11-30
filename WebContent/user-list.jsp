@@ -9,7 +9,35 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	<link rel="stylesheet" href="./styles/user-list.css">
+	<style>
+	.table{
+	    box-shadow: 0 3px 7px lightgrey;
+	}
+	
+	.table th{
+	    border:1px solid white;
+	}
+	
+	.table td{
+	    border: 1px solid lightgrey;
+	}
+	
+	.table-head{
+	    background-color: blue;
+	    color: white;
+	    text-align: center;
+	    box-shadow: 0 3px 5px rgb(23, 23, 24);
+	}
+	
+	.table-icons{
+	    font-size: 20px;
+	}
+	
+	.table tr:hover{
+	    background-color: rgb(217, 233, 217);
+	    color: black;
+	}
+	</style>
 </head>
 <body>
 
@@ -70,6 +98,28 @@
 			</table>
 		</div>
 	</div>
-	<script src="./js/user-list.js"></script>
+	<script>
+	function confirmDelete()
+	{
+	    if (confirm("Do You Really Want To Delete This User ? "))
+	    {
+	        return true;
+	    }
+	    else{
+	        return false;
+	    }
+	}
+
+	function confirmEdit()
+	{
+	    if (confirm("The Changes Will Be Permanent ? Are You Sure ? "))
+	    {
+	        return true;
+	    }
+	    else{
+	        return false;
+	    }
+	}
+	</script>
 </body>
 </html>
